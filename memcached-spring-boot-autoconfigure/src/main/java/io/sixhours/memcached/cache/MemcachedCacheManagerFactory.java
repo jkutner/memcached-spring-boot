@@ -19,6 +19,8 @@ package io.sixhours.memcached.cache;
 import net.spy.memcached.ClientMode;
 import net.spy.memcached.ConnectionFactoryBuilder;
 import net.spy.memcached.MemcachedClient;
+import net.spy.memcached.auth.AuthDescriptor;
+import net.spy.memcached.auth.PlainCallbackHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -56,6 +58,12 @@ public class MemcachedCacheManagerFactory {
         final ConnectionFactoryBuilder connectionFactoryBuilder = new ConnectionFactoryBuilder()
                 .setClientMode(mode)
                 .setProtocol(protocol.value());
+
+        if (properties.getUsername() != null) {
+            connectionFactoryBuilder.setAuthDescriptor(new AuthDescriptor(
+                new String[] { "PLAIN" },
+                new PlainCallbackHandler(properties.getUsername(), properties.getPassword())));
+        }
 
         return new MemcachedClient(connectionFactoryBuilder.build(), servers);
     }

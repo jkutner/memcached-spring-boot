@@ -97,6 +97,8 @@ full list of supported properties:
 ```yaml
 # MEMCACHED CACHE 
 memcached.cache.servers: # Comma-separated list of hostname:port for memcached servers (default "localhost:11211")
+memcached.cache.username: # Username for the memcached servers (default is null)
+memcached.cache.password: # Password for the memcached servers (default is null)
 memcached.cache.mode: # Memcached client mode (use one of following: "static", "dynamic"). Default mode is "static", use "dynamic" for AWS node auto discovery
 memcached.cache.expirations: # Cache expirations in seconds (default "60"). To set new global expiration use value without colon: {number} e.g. "86400". To set value per cache name use format: {cache_name}:{number} e.g. "authors:3600"
 memcached.cache.prefix: # Cache key prefix (default "memcached:spring-boot")

@@ -75,6 +75,10 @@ public class MemcachedCacheProperties {
      */
     private Protocol protocol = Default.PROTOCOL;
 
+    private String username;
+
+    private String password;
+
     public List<InetSocketAddress> getServers() {
         return servers;
     }
@@ -173,5 +177,21 @@ public class MemcachedCacheProperties {
         public ConnectionFactoryBuilder.Protocol value() {
             return ConnectionFactoryBuilder.Protocol.valueOf(this.name());
         }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
